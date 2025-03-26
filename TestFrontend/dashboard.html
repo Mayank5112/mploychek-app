@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <div id="userDetails"></div>
+    <button id="logoutBtn">Logout</button>
+
+    <h2>All Users (Admin Only)</h2>
+    <table border="1" id="userTable">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        const token = localStorage.getItem('token');
+        const role = localStorage.getItem('role');  // Get role from localStorage
+        
+        if (!token) {
+            window.location.href = 'index.html';
+        }
+    
+        async function fetchUserData() {
+            // Only fetch all users if the role is 'admin'
+            if (role !== 'admin') {
+                console.log('User is not admin, skipping user data fetch.');
+                return;
+            }
+    
+            const response = await fetch('http://localhost:3000/auth/users', {
+                method: 'GET',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+    
+            if (!response.ok) {
+                alert('Failed to fetch user data. Logging out.');
+                localStorage.removeItem('token');
+                window.location.href = 'index.html';
+                return;
+            }
+    
+            const users = await response.json();
+            const userTable = document.querySelector('#userTable tbody');
+            userTable.innerHTML = '';
+    
+            users.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${user.userID}</td><td>${user.role}</td>`;
+                userTable.appendChild(row);
+            });
+        }
+    
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.removeItem('token');
+            window.location.href = 'index.html';
+        });
+    
+        // Call fetchUserData only for admin
+        fetchUserData();
+    </script>
+    
+</body>
+</html>

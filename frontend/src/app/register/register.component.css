@@ -1,0 +1,110 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap'); */
+
+
+h1{
+  
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+/* Body - Center the form */
+body {
+    font-family: 'popins', 'sans-serif' !important;
+    height: 100vh;
+    margin: 0;
+    background: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Form Container */
+  form {
+    font-family: 'popins', !important;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    justify-content: center;  /* This centers items vertically */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    border: 1px solid #ccc;
+    max-width: 400px;
+    width: 100%;
+    gap: 15px;
+    margin: 0 auto;  /* Ensures the form is centered within its container */
+  }
+  
+  /* Form Title */
+  .form-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Groups */
+  .form-group {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  /* Labels */
+  .form-label {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  /* Inputs */
+  .form-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .form-input:focus {
+    border-color: #3498db;
+  }
+  
+  /* Password Container */
+  .password-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Show Password */
+  .show-password {
+    cursor: pointer;
+  }
+  
+  .show-password-label {
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+  }
+  
+  /* Submit Button */
+  .form-button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background 0.2s;
+  }
+  
+  .form-button:hover {
+    background: #0056b3;
+  }
+  

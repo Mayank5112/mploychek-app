@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <input type="text" id="userID" placeholder="User ID" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <button id="registerBtn">Register</button>
+    </div>
+
+    <!-- Registration Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Register</h2>
+            <form id="registerForm">
+                <input type="text" id="regUserID" placeholder="User ID" required>
+                <input type="password" id="regPassword" placeholder="Password" required>
+                <select id="regRole" required>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/auth';
+
+        // Login Form Handling
+document.getElementById('loginForm').onsubmit = async (e) => {
+    e.preventDefault();
+    const userID = document.getElementById('userID').value;
+    const password = document.getElementById('password').value;
+
+    const res = await fetch(`${API_URL}/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userID, password })
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('role', data.role);
+        alert('Login Successful');
+        window.location.href = 'dashboard.html';  // Redirect to the dashboard page
+    } else {
+        alert(data.message);
+    }
+};
+
+
+        // Modal Open/Close Logic
+        const registerModal = document.getElementById('registerModal');
+        document.getElementById('registerBtn').onclick = () => registerModal.style.display = 'block';
+        document.getElementById('closeModal').onclick = () => registerModal.style.display = 'none';
+        window.onclick = (e) => { if (e.target === registerModal) registerModal.style.display = 'none'; };
+
+        // Registration Form Handling
+        document.getElementById('registerForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const userID = document.getElementById('regUserID').value;
+            const password = document.getElementById('regPassword').value;
+            const role = document.getElementById('regRole').value;
+            const res = await fetch(`${API_URL}/register`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userID, password, role })
+            });
+            const data = await res.json();
+            if (res.ok) {
+                alert('User Registered Successfully');
+                registerModal.style.display = 'none';
+            } else {
+                alert(data.message);
+            }
+        };
+    </script>
+
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 20px; }
+        .container { max-width: 300px; margin: auto; }
+        input, select, button { display: block; width: 100%; margin-bottom: 10px; padding: 10px; }
+        button { cursor: pointer; background: #007bff; color: white; border: none; }
+        .modal { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+        .modal-content { background: white; padding: 20px; margin: 10% auto; width: 80%; max-width: 400px; }
+        .close { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+    </style>
+</body>
+</html>

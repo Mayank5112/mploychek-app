@@ -1,0 +1,34 @@
+<div class="dashboard-container">
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1>Dashboard</h1>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </div>
+  <!-- Loading Overlay (Always Present but Hidden by Default) -->
+<div class="loading-overlay" [class.show]="loading">
+  <div class="spinner"></div>
+</div>
+
+  <!-- Admin-only section -->
+  @if (role === 'admin') {
+    <h2>Admin Dashboard</h2>
+
+    <!-- Fetch Users Button -->
+    <button (click)="fetchUsers()">Fetch Users</button>
+
+    <!-- Display User List if Fetched -->
+    @if (users.length > 0) {
+      <ul>
+        @for (user of users; track user.userID) {
+          <li>{{ user.userID }}</li>
+        }
+      </ul>
+    } @else {
+      <p>No users found.</p>
+    }
+  } @else {
+    <!-- User-only message -->
+    <h2>Welcome, User!</h2>
+    <p>This section is only for admins.</p>
+  }
+</div>
