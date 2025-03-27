@@ -20,5 +20,5 @@ MployChek is a web application for managing users with **authentication, role-ba
 git clone https://github.com/your-username/mploychek-app.git
 cd mploychek-app
 
-
-This readme is a very simple description of the project with time I will add more details to it 
+---
+* This readme is a very simple description of the project with time I will add more details to it * 
