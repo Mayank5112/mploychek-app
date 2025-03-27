@@ -57,6 +57,23 @@ fetchUsers() {
   }
 }
   
+deleteUser(userId: string) {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+  if (confirm('Are you sure you want to delete this user?')) {
+    this.http.delete(`http://localhost:3000/auth/users/${userId}`, { headers })
+      .subscribe({
+        next: (response) => {
+          alert('User deleted successfully!');
+          this.fetchUsers(); // Refresh the list after deletion
+        },
+        error: (err) => {
+          alert('Error deleting user: ' + err.error.message);
+        }
+      });
+  }
+}
 
   logout() {
     localStorage.removeItem('token');  // Clear token from local storage

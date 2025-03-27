@@ -1,52 +1,161 @@
-/* General page styling */
+/* General styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Dashboard container */
-  .dashboard-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-  }
-  
-  /* Navbar styling */
-  .navbar {
-    background: #007bff;
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  /* Content area */
-  .content {
-    flex-grow: 1;
-    padding: 20px;
-    background: #f4f4f4;
-  }
-  
-  /* Logout button */
-  .logout-btn {
-    background: white;
-    color: #007bff;
-    border: none;
-    padding: 8px 15px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background 0.2s;
-  }
-  
-  .logout-btn:hover {
-    background: #0056b3;
-    color: white;
-  }
-  
-  /* Loading Overlay (Hidden by Default) */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Dashboard layout */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Navbar - Full width & Styling */
+.navbar {
+  width: 100%;
+  background: #007bff;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0px; /* Ensures the navbar is rectangular */
+}
+
+.navbar h1 {
+  font-size: 1.8rem;
+}
+
+/* Logout Button */
+.logout-btn {
+  background: white;
+  color: #007bff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 8px; /* Rounded corners */
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #0056b3;
+  color: white;
+}
+
+/* Content Section */
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  background: #f4f4f4;
+  text-align: center;
+  border-radius: 12px; /* Rounded corners for the content area */
+  margin: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+/* Fetch Button */
+.fetch-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 8px; /* Rounded corners */
+  font-size: 1rem;
+  margin-bottom: 20px;
+  transition: background 0.3s ease;
+}
+
+.fetch-btn:hover {
+  background: #218838;
+}
+
+/* User List Container - Centered */
+.user-list-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically if needed */
+  flex-direction: column; /* Stack elements properly */
+  width: 100%;
+}
+
+/* User List Styling */
+.user-list {
+  list-style-type: none;
+  padding: 0;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.user-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 8px;
+
+  width: 250px;
+}
+
+/* Delete Button */
+.delete-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.delete-btn:hover {
+  background: #c82333;
+}
+
+/* Table Styling */
+table {
+  width: fit-content; /* Prevents it from stretching too much */
+  margin: 0 auto; /* Centers the table horizontally */
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px; /* Rounded corners */
+  overflow: hidden; /* Ensures rounded corners apply properly */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  background: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+.no-users {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* Loading Overlay */
 .loading-overlay {
   position: fixed;
   top: 0;
@@ -63,23 +172,20 @@
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
-/* Show overlay when 'show' class is added */
 .loading-overlay.show {
   opacity: 1;
   visibility: visible;
 }
 
-/* Spinner */
 .spinner {
-  width: 60px;
-  height: 60px;
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #007bff;
+  width: 50px;
+  height: 50px;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #007bff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
 
-/* Animation */
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
