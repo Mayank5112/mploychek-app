@@ -48,7 +48,7 @@ fetchUsers() {
       error: (error) => console.error('Failed to fetch users:', error),
       complete: () => {
         setTimeout(() => {
-          this.loading = false;  // Hide spinner after a short delay
+          this.loading = false; 
         }, 500);
       }
     });

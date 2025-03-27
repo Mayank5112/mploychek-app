@@ -1,20 +1,19 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';  // Import HttpClient
-
+import { HttpClient } from '@angular/common/http';  
 
 @Component({
   selector: 'app-login',
-  standalone: true,  // 🟢 Important! Standalone components don’t need NgModules.
-  imports: [FormsModule],  // ✅ Add FormsModule here!
+  standalone: true,  
+  imports: [FormsModule],  
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
 
   
-  constructor(private http: HttpClient, private router: Router) {}  // ✅ Inject the Router here
+  constructor(private http: HttpClient, private router: Router) {}  
 
   userID: string = '';
   password: string = '';
